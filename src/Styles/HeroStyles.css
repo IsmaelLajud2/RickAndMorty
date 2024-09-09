@@ -1,0 +1,22 @@
+.hero-section {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: white;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+
+    width: 100%;
+    height: calc(-60px + 60vh);
+
+}
+
+.hero-title {
+    font-family: -apple-system, 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+    font-weight: 900;
+    padding-top: 8%;
+    font-size: 5.625rem;
+    margin: 0;
+
+}
