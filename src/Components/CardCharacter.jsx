@@ -2,7 +2,7 @@ import '../Styles/CardStyles.css'
 
 const CardCharacter = ({characterinfo}) => {
 
-const lastEpisode =characterinfo.episode[characterinfo.episode.length -1]    
+// const lastEpisode =characterinfo.episode[characterinfo.episode.length -1]    
   return (
     <>
    <article className='card-article'>
