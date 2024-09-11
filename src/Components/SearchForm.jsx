@@ -1,5 +1,5 @@
 import  { useState } from 'react'
-
+import '../Styles/FormStyles.css'
 const SearchForm = ({changeCharacter}) => {
 
   const [character,setCharacter]= useState("")  
@@ -15,12 +15,11 @@ setCharacter(e.target.value)
 console.log(character)
   }
   return (
-    <form onSubmit={handleSubmit}>
-        <label> Busqueda
-    <input onChange={handleChange} value={character} placeholder='Rick....' type='text' name='character'/>
-        </label>
-        
-    </form>
+    <form className="form">
+    <input className="input" placeholder="Type your text" required="" type="text"/>
+    <span className="input-border"></span>
+  </form  >
+    
   )
 }
 

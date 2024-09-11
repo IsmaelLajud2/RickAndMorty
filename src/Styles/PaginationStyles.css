@@ -1,0 +1,38 @@
+button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s linear;
+    border-radius: 10px;
+    border: 1px solid #F2BED1;
+    padding: 10px 20px;
+    background-color: #202329;
+    color: whitesmoke;
+
+}
+
+.svg-next {
+    margin-left: 5px;
+    transition: all 0.4s ease-in;
+}
+
+.svg-prev {
+    margin-right: 5px;
+    transition: all 0.4s ease-in;
+}
+
+button:hover>.svg-prev {
+    font-size: 1.2em;
+    transform: translateX(-6px);
+}
+
+button:hover>.svg-next {
+    font-size: 1.2em;
+    transform: translateX(6px);
+}
+
+button:hover {
+    box-shadow: 10px 10px 40px #777676;
+    transform: translateY(-5px);
+}

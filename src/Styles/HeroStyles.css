@@ -18,5 +18,13 @@
     padding-top: 8%;
     font-size: 5.625rem;
     margin: 0;
+    color: #202329;
+
+}
+
+.search-section {
+    display: flex;
+
+    justify-content: space-around;
 
 }
