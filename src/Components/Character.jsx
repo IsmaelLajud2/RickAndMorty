@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import axios from 'axios';
 import CardCharacter from './CardCharacter';
 import { ClipLoader } from 'react-spinners';
@@ -23,24 +23,24 @@ const Character = () => {
     });
   }, []);
 
-  const apiFetch = async (url = 'https://rickandmortyapi.com/api/character') => {
+  const apiFetch = useCallback(async (url = 'https://rickandmortyapi.com/api/character') => {
     try {
       setLoading(true);
       const response = await axios.get(url);
       setCharacters(response.data.results.slice(0,6));
       setInfo(response.data.info);
       setLoading(false);
-      if (!nameFilter) {
+     
         setCurrentPageData(response.data.results);
-      }
+      
     } catch (error) {
       console.error(error.message);
       setLoading(false);
     }
-  };
+  },[]);
 
  
-  const fetchAllCharacters = async () => {
+  const fetchAllCharacters =  useCallback(async () => {
     setLoading(true);
     let allResults = [];
     let url = 'https://rickandmortyapi.com/api/character';
@@ -57,7 +57,7 @@ const Character = () => {
       console.error('Error al cargar todos los personajes:', error);
       setLoading(false);
     }
-  };
+  },[]);
 
   useEffect(() => {
     if (nameFilter) {
@@ -65,13 +65,9 @@ const Character = () => {
     } else {
       apiFetch();
     }
-  }, [nameFilter]);
+  }, [nameFilter, apiFetch, fetchAllCharacters]);
 
-  useEffect(() => {
-    if (!nameFilter) {
-      apiFetch(); 
-    }
-  }, []);
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -121,7 +117,7 @@ const Character = () => {
           {loading ? (
             <ClipLoader size={150} />
           ) : (
-            filteredResults.slice(0, 20).map((character, index) => (
+            filteredResults.slice(0, 40).map((character, index) => (
               <div key={index} data-aos="fade-right">
                 <CardCharacter key={index} characterinfo={character} />
               </div>
