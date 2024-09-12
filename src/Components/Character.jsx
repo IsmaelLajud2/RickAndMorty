@@ -11,7 +11,7 @@ import NextButton from './NextButton';
 
 const Character = () => {
   const [loading, setLoading] = useState(false);
-  const [characters, setCharacters] = useState([]);
+  // const [characters, setCharacters] = useState([]);
   const [nameFilter, setNameFilter] = useState("");
   const [info, setInfo] = useState({});
   const [allCharacters, setAllCharacters] = useState([]);
@@ -27,12 +27,11 @@ const Character = () => {
     try {
       setLoading(true);
       const response = await axios.get(url);
-      setCharacters(response.data.results.slice(0,6));
+      // setCharacters(response.data.results.slice(0,6));
       setInfo(response.data.info);
       setLoading(false);
-     
-        setCurrentPageData(response.data.results);
-      
+     setCurrentPageData(response.data.results.slice(0,6));
+      console.log(response)
     } catch (error) {
       console.error(error.message);
       setLoading(false);
@@ -50,6 +49,7 @@ const Character = () => {
         const response = await axios.get(url);
         allResults = [...allResults, ...response.data.results];
         url = response.data.info.next;
+        
       }
       setAllCharacters(allResults);
       setLoading(false);
@@ -117,7 +117,7 @@ const Character = () => {
           {loading ? (
             <ClipLoader size={150} />
           ) : (
-            filteredResults.slice(0, 40).map((character, index) => (
+            filteredResults.slice(0, 100).map((character, index) => (
               <div key={index} data-aos="fade-right">
                 <CardCharacter key={index} characterinfo={character} />
               </div>
