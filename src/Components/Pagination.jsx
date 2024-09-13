@@ -10,10 +10,14 @@ const handlePrevious=() =>{
     <>
     {
         prev ? 
-        <button onClick={handlePrevious}>
+        <button onClick={handlePrevious} >
             <SvgComponent className="svg-prev"></SvgComponent>
             Anterior
-    </button> : null
+    </button> : 
+     <button onClick={handlePrevious} className='button-disabled' disabled>
+     <SvgComponent className="svg-prev-disabled"></SvgComponent>
+     Anterior
+</button>
     }
 
 

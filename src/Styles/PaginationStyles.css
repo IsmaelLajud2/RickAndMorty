@@ -27,6 +27,27 @@ button:hover>.svg-prev {
     transform: translateX(-6px);
 }
 
+.button-disabled {
+    opacity: 0.4;
+}
+
+.button-next-disabled {
+    opacity: 0.4;
+}
+
+.svg-prev-disabled {
+    margin-right: 5px;
+    opacity: 0.2;
+    transition: all 0.4s ease-in;
+}
+
+button:hover>.svg-prev-disabled {
+    font-size: 1.2em;
+    transform: translateX(-6px);
+
+}
+
+
 button:hover>.svg-next {
     font-size: 1.2em;
     transform: translateX(6px);
