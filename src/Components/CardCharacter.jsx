@@ -12,7 +12,7 @@ const CardCharacter = ({characterinfo}) => {
 <img className='imagen-character'alt={characterinfo.name} src={characterinfo.image}/>
 </div>
 <div className='character-info'>
-<h1 className="name-character"><a className='link-name' target='_blank' href={characterinfo.url}>{characterinfo.name}</a></h1>
+<h1 className="name-character">{characterinfo.name}</h1>
     
     <span className="status-character">
         <span className={characterinfo.status === "Alive" ? "status-icon-alive" : "status-icon-dead"}>

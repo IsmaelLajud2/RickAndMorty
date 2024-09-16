@@ -77,8 +77,9 @@
     display: inline-block;
 }
 
-.link-name:hover {
+.name-character:hover {
     color: rgb(255, 152, 0);
+    cursor: pointer;
 }
 
 .character-info {

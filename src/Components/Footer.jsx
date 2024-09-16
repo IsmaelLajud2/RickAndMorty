@@ -10,9 +10,9 @@ const Footer = ({info ,location,episodes}) => {
 
    
     <ul className='footer-ul'>
-        <li className='li-container'><a  className='li-container' href='https://rickandmortyapi.com/api/character' target='_blank'>  CHARACTERS: {info.count} </a></li>
-        <li className='li-container'><a className='li-container' href="https://rickandmortyapi.com/api/location" target='_blank'> LOCATIONS: {location.count}</a></li>
-        <li className='li-container'><a className='li-container' href="https://rickandmortyapi.com/api/episode" target='_blank'> EPISODES: {episodes.count}</a></li>
+        <li className='li-container'>  CHARACTERS: {info.count} </li>
+        <li className='li-container'>LOCATIONS: {location.count}</li>
+        <li className='li-container'> EPISODES: {episodes.count}</li>
     </ul>
     <div className='status-server'>
  <span className='server-text'>Server Status <span className='server-icon'></span></span>
