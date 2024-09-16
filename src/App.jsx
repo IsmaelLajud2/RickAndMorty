@@ -1,7 +1,6 @@
 
 import './App.css'
 import Character from './Components/Character'
-import Footer from './Components/Footer'
 import Hero from './Components/Hero'
 
 function App() {
@@ -11,7 +10,7 @@ function App() {
     <>
     <Hero></Hero>
   <Character></Character>
-  <Footer></Footer>
+  
     </>
   )
 }

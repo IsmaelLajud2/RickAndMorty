@@ -8,6 +8,7 @@ import Aos from 'aos';
 import 'aos/dist/aos.css';
 import Pagination from './Pagination';
 import NextButton from './NextButton';
+import Footer from './Footer';
 
 const Character = () => {
   const [loading, setLoading] = useState(false);
@@ -16,6 +17,8 @@ const Character = () => {
   const [info, setInfo] = useState({});
   const [allCharacters, setAllCharacters] = useState([]);
   const [currentPageData, setCurrentPageData] = useState([]);
+  const[location,setLocation]=useState([])
+  const [episodes, setEpisodes] = useState([])
 
   useEffect(() => {
     Aos.init({
@@ -38,7 +41,19 @@ const Character = () => {
     }
   },[]);
 
- 
+
+
+ const locationfetch =async () =>{
+  try {
+    const response = await axios.get('https://rickandmortyapi.com/api/location')
+    setLocation(response.data.info)
+    const personaje= await axios.get('https://rickandmortyapi.com/api/episode')
+    setEpisodes(personaje.data.info)
+
+  } catch (error) {
+    console.log(error.message)
+  }
+ }
   const fetchAllCharacters =  useCallback(async () => {
     setLoading(true);
     let allResults = [];
@@ -67,6 +82,9 @@ const Character = () => {
     }
   }, [nameFilter, apiFetch, fetchAllCharacters]);
 
+useEffect(() => {
+locationfetch()
+}, [])
 
 
   const handleSubmit = (e) => {
@@ -125,6 +143,8 @@ const Character = () => {
           )}
         </div>
       </section>
+      <Footer info={info} location={location} episodes={episodes}></Footer>
+      
     </>
   );
 };
