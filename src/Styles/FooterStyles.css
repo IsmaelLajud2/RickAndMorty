@@ -2,8 +2,41 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: row;
     min-height: calc(120px);
     width: 100%;
     background-color: rgb(32, 35, 41);
     padding: 4rem 0 4rem 0;
+    flex-flow: column;
+}
+
+.server-icon {
+    height: 0.6rem;
+    width: 0.6rem;
+    margin-right: 0.375rem;
+    background: rgb(85, 204, 68);
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.info-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+}
+
+.footer-ul {
+    display: flex;
+    margin: 0 10px 0 10px;
+    gap: 10;
+}
+
+.social-medialist {
+    display: flex;
+    flex-direction: column;
+}
+
+.li-container {
+    margin: 0 20px 0 20px
 }
