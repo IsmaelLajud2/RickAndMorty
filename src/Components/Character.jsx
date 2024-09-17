@@ -124,7 +124,7 @@ locationfetch()
             type="text"
             value={nameFilter}
             onChange={handleNameFilter}
-            placeholder='Ingresa tu personaje'
+            placeholder='Busca tu personaje...'
           />
           <span className="input-border"></span>
         </form>
