@@ -111,13 +111,13 @@
     font-weight: 600;
 }
 
-@media (max-width:950px) {
+@media (max-width:430px) {
     .card-container {
-        width: 530px;
+        width: 430px;
         overflow: hidden;
     }
 
     .card-article {
-        max-width: 500px;
+        max-width: 430px;
     }
 }

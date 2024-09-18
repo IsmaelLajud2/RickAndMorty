@@ -8,12 +8,13 @@
     width: var(--width-of-input);
 }
 
-/* styling of Input */
+
 .input {
     color: #fff;
     font-size: 0.9rem;
     background-color: #202329;
     width: 100%;
+    margin-bottom: 15px;
     box-sizing: border-box;
     padding-inline: 0.5em;
     padding-block: 0.7em;
@@ -32,6 +33,7 @@
     bottom: 0;
     left: 0;
     transition: 0.3s;
+    margin-bottom: 15px;
 }
 
 /* Hover on Input */
@@ -45,5 +47,5 @@ input:focus {
 
 /* here is code of animated border */
 input:focus~.input-border {
-    width: 100%;
+    width: 99%;
 }

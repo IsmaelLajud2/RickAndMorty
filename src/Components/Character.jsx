@@ -12,13 +12,12 @@ import Footer from './Footer';
 
 const Character = () => {
   const [loading, setLoading] = useState(false);
-  // const [characters, setCharacters] = useState([]);
   const [nameFilter, setNameFilter] = useState("");
   const [info, setInfo] = useState({});
   const [allCharacters, setAllCharacters] = useState([]);
   const [currentPageData, setCurrentPageData] = useState([]);
-  const[location,setLocation]=useState([])
-  const [episodes, setEpisodes] = useState([])
+  const [location, setLocation] = useState([]);
+  const [episodes, setEpisodes] = useState([]);
 
   useEffect(() => {
     Aos.init({
@@ -26,93 +25,103 @@ const Character = () => {
     });
   }, []);
 
-  const apiFetch = useCallback(async (url = 'https://rickandmortyapi.com/api/character') => {
+  
+  const apiFetch = useCallback(async (url = 'https://rickandmortyapi.com/api/character', isFilter = false) => {
     try {
       setLoading(true);
       const response = await axios.get(url);
-      // setCharacters(response.data.results.slice(0,6));
-      setInfo(response.data.info);
+      setInfo(response.data.info); 
       setLoading(false);
-     setCurrentPageData(response.data.results.slice(0,6));
-      console.log(response)
+
+    
+      if (isFilter) {
+        setAllCharacters(response.data.results);
+      } else {
+     
+        setCurrentPageData(response.data.results.slice(0, 6));
+      }
     } catch (error) {
       console.error(error.message);
       setLoading(false);
     }
-  },[]);
+  }, []);
 
 
-
- const locationfetch =async () =>{
-  try {
-    const response = await axios.get('https://rickandmortyapi.com/api/location')
-    setLocation(response.data.info)
-    const personaje= await axios.get('https://rickandmortyapi.com/api/episode')
-    setEpisodes(personaje.data.info)
-
-  } catch (error) {
-    console.log(error.message)
-  }
- }
-  const fetchAllCharacters =  useCallback(async () => {
-    setLoading(true);
-    let allResults = [];
-    let url = 'https://rickandmortyapi.com/api/character';
-    
+  const fetchFilteredCharacters = useCallback(async (url = `https://rickandmortyapi.com/api/character/?name=${nameFilter}`) => {
     try {
-      while (url) {
-        const response = await axios.get(url);
-        allResults = [...allResults, ...response.data.results];
-        url = response.data.info.next;
-        
-      }
-      setAllCharacters(allResults);
+      setLoading(true);
+      const response = await axios.get(url);
+      setInfo(response.data.info);
+      setAllCharacters(response.data.results);
       setLoading(false);
     } catch (error) {
-      console.error('Error al cargar todos los personajes:', error);
+      console.error('Error al filtrar personajes:', error);
       setLoading(false);
     }
-  },[]);
+  }, [nameFilter]);
 
+ 
+  const locationfetch = useCallback(async () => {
+    try {
+      setLoading(true);
+      const response = await axios.get('https://rickandmortyapi.com/api/location');
+      setLocation(response.data.info);
+
+      const episodeResponse = await axios.get('https://rickandmortyapi.com/api/episode');
+      setEpisodes(episodeResponse.data.info);
+      setLoading(false);
+    } catch (error) {
+      console.log(error.message);
+      setLoading(false);
+    }
+  }, []);
+
+ 
   useEffect(() => {
     if (nameFilter) {
-      fetchAllCharacters(); 
+      fetchFilteredCharacters(); 
     } else {
-      apiFetch();
+      apiFetch(); 
     }
-  }, [nameFilter, apiFetch, fetchAllCharacters]);
+  }, [nameFilter, apiFetch, fetchFilteredCharacters]);
 
-useEffect(() => {
-locationfetch()
-}, [])
+  useEffect(() => {
+    locationfetch();
+  }, [locationfetch]);
 
-
+ 
   const handleSubmit = (e) => {
     e.preventDefault();
   };
 
+  
   const handleNameFilter = (e) => {
     setNameFilter(e.target.value);
   };
 
+ 
   const onNext = () => {
     if (info.next) {
-      apiFetch(info.next);
+      if (nameFilter) {
+        fetchFilteredCharacters(info.next);
+      } else {
+        apiFetch(info.next); 
+      }
     }
   };
 
   const onPrevious = () => {
     if (info.prev) {
-      apiFetch(info.prev);
+      if (nameFilter) {
+        fetchFilteredCharacters(info.prev); 
+      } else {
+        apiFetch(info.prev); 
+      }
     }
   };
 
-
-  const filteredResults = nameFilter
-    ? allCharacters.filter(character =>
-        character.name.toLowerCase().includes(nameFilter.toLowerCase())
-      )
-    : currentPageData;
+  
+  const filteredResults = nameFilter ? allCharacters : currentPageData;
 
   return (
     <>
@@ -135,16 +144,15 @@ locationfetch()
           {loading ? (
             <ClipLoader size={150} />
           ) : (
-            filteredResults.slice(0, 100).map((character, index) => (
-              <div key={index} data-aos="fade-right">
-                <CardCharacter key={index} characterinfo={character} />
+            filteredResults.slice(0, 6).map((character) => (
+              <div key={character.id} data-aos="fade-right">
+                <CardCharacter key={character.id} characterinfo={character} />
               </div>
             ))
           )}
         </div>
       </section>
       <Footer info={info} location={location} episodes={episodes}></Footer>
-      
     </>
   );
 };
