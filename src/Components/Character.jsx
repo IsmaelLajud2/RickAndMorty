@@ -97,6 +97,7 @@ const Character = () => {
   
   const handleNameFilter = (e) => {
     setNameFilter(e.target.value);
+    
   };
 
  
@@ -130,11 +131,12 @@ const Character = () => {
         <form className="form" onSubmit={handleSubmit}>
           <input
             className="input"
-            type="text"
+            type="search"
             value={nameFilter}
             onChange={handleNameFilter}
             placeholder='Busca tu personaje...'
           />
+           
           <span className="input-border"></span>
         </form>
         <NextButton onNext={onNext} next={info.next} />
