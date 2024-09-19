@@ -1,5 +1,5 @@
 import '../Styles/PaginationStyles.css'
-import SvgComponent from './SvgComponent'
+import SvgComponent from './SVG/SvgComponent'
 
 const Pagination = ({ onPrevious,prev}) => {
 

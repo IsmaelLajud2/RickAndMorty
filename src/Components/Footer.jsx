@@ -1,7 +1,7 @@
 import '../Styles/FooterStyles.css'
-import SvgIconGIT from './SvgIconGIT'
-import SvgIconInstagram from './SvgIconInstagram'
-import SVGIconLinkeding from './SVGIconLinkeding'
+import SvgIconGIT from './SVG/SvgIconGIT'
+import SvgIconInstagram from './SVG/SvgIconInstagram'
+import SVGIconLinkeding from './SVG/SVGIconLinkeding'
 
 const Footer = ({info ,location,episodes}) => {
   return (

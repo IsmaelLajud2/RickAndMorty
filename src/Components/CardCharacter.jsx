@@ -1,11 +1,7 @@
- 
-
 import '../Styles/CardStyles.css'
-
 const CardCharacter = ({characterinfo}) => {
 
-// const lastEpisode =characterinfo.episode[characterinfo.episode.length -1]    
-  return (
+return (
    
    <article className='card-article'>
 <div className='imagen-container'>
@@ -25,8 +21,6 @@ const CardCharacter = ({characterinfo}) => {
     
     </article>
    
-  
-  
   )
 }
   
