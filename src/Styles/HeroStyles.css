@@ -26,11 +26,4 @@
     display: flex;
 
     justify-content: space-around;
-
-}
-
-.svg-container {
-    display: flex;
-    justify-content: center;
-    margin: 0;
 }
